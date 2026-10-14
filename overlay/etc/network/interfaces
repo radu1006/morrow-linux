@@ -1,0 +1,10 @@
+# Morrow leaves the interfaces to NetworkManager (nmtui, or `nmcli`).
+#
+# Alpine's base install brings up an `automatic` interface from this file with busybox udhcpc, and
+# NetworkManager manages the same interfaces by default. Two managers on one interface is not a
+# conflict that announces itself: it is a machine whose connection drops every few minutes for no
+# visible reason. NetworkManager configures ethernet and wifi on its own, so the only job left here
+# is loopback -- and the installer leaves an existing configuration alone rather than discarding
+# somebody's static address on their behalf.
+auto lo
+iface lo inet loopback

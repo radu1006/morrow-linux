@@ -1,0 +1,5 @@
+[toolchain]
+# Morrow Watch is built and shipped from stable. The ISO build uses the musl target
+# that Alpine ships, so no nightly features are required anywhere.
+channel = "stable"
+components = ["rustfmt", "clippy"]

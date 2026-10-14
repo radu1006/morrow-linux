@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Morrow Watch
+Comment=CPU, memory, storage, network and processes
+Exec=morrow-watch
+Icon=utilities-system-monitor
+Terminal=false
+Categories=System;Monitor;

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Morrow's right-click menu. Openbox ships almost nothing in its own menu, and a desktop whose
+  only way to start a program is a terminal is a desktop that has to be explained.
+
+  The text entry matters more than it looks: on a machine with too little memory, a report in a
+  terminal is the monitor that still works.
+-->
+<openbox_menu>
+  <menu id="root-menu" label="Morrow">
+    <item label="Morrow Watch">
+      <action name="Execute"><command>morrow-watch</command></action>
+    </item>
+    <item label="Morrow Watch (report)">
+      <action name="Execute"><command>xterm -e sh -c 'morrow-watch --text; read x'</command></action>
+    </item>
+    <item label="Processes">
+      <action name="Execute"><command>xterm -e sh -c 'morrow-watch --text --sort cpu --rows 20; read x'</command></action>
+    </item>
+    <item label="Terminal">
+      <action name="Execute"><command>xterm</command></action>
+    </item>
+    <item label="Files">
+      <action name="Execute"><command>pcmanfm</command></action>
+    </item>
+    <separator />
+    <item label="Reconfigure">
+      <!-- Reloads openbox's own configuration and the menu, without restarting the session. -->
+      <action name="Reconfigure" />
+    </item>
+    <item label="Exit session">
+      <action name="Exit" />
+    </item>
+  </menu>
+</openbox_menu>

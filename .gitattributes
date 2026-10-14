@@ -1,0 +1,20 @@
+# Morrow runs on Linux, and a carriage return is not whitespace to any of these tools.
+#
+# It is worth spelling out, because the failure is not obvious on the machine where the mistake is
+# usually made: in `.xinitrc`, a line ending `openbox-session\r` asks for a command called
+# "openbox-session\r", so the session does not start; in a `.desktop` file the `Exec=` line ends in a
+# CR and the program is never launched; in a shell script a CR lands inside the last variable on the
+# line. Git Bash on Windows tolerates CRLF and its grep reads files in text mode, so a Windows
+# checkout hides all of it until an ISO boots without a desktop.
+* text=auto eol=lf
+*.sh text eol=lf
+*.rs text eol=lf
+*.md text eol=lf
+*.toml text eol=lf
+*.xml text eol=lf
+*.conf text eol=lf
+*.desktop text eol=lf
+Dockerfile text eol=lf
+autostart text eol=lf
+interfaces text eol=lf
+.xinitrc text eol=lf

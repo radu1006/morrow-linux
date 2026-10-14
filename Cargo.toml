@@ -1,0 +1,49 @@
+[package]
+name = "morrow-watch"
+version = "0.2.0"
+edition = "2021"
+rust-version = "1.77"
+description = "Morrow Linux system watch: a small native monitor for CPU, memory, storage, network and processes"
+license = "MIT"
+readme = "README.md"
+
+[features]
+default = ["gui"]
+# The egui/OpenGL desktop interface. Build with `--no-default-features` for a tiny
+# text-only monitor that needs no X11, OpenGL or font stack at all (servers, rescue).
+gui = ["dep:eframe"]
+
+[dependencies]
+# `multithread` is deliberately left off: it pulls in rayon, and one sampler is
+# plenty for a 2-core machine. Dropping it keeps the build and the binary small.
+sysinfo = { version = "0.33", default-features = false, features = [
+    "system",
+    "disk",
+    "network",
+    "component",
+    "user",
+] }
+eframe = { version = "0.31", optional = true, default-features = false, features = [
+    "default_fonts",
+    "glow",
+    "x11",
+] }
+
+[lib]
+name = "morrow_watch"
+path = "src/lib.rs"
+
+[[bin]]
+name = "morrow-watch"
+path = "src/main.rs"
+
+# Morrow Watch is meant to stay small and to start fast on a 2-core / 500 MB machine.
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
+
+[profile.release.package."*"]
+opt-level = "s"

@@ -1,0 +1,15 @@
+# What the container builds for itself, and what is a Windows build artefact.
+#
+# The context is the whole repository, so this file decides how long `docker build` takes. target/
+# holds 1 GB of Windows objects that a musl build cannot reuse, and the aports tree, the work tree
+# and the output are all recreated inside the container by design.
+/target
+/iso/aports
+/iso/dist
+/iso/.cache
+/dist
+/out
+/.cache
+.git
+*.iso
+*.apkovl.tar.gz

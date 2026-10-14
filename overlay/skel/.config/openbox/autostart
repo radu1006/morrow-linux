@@ -1,0 +1,16 @@
+#!/bin/sh
+# Openbox starts this file as a shell script when the session begins, so it is written as one: no
+# `exec`, no `exit`, just programs put into the background and left running. The interpreter line is
+# here so that it is also correct if a window manager ever decides to run the file directly.
+
+if [ "${MORROW_LEAN:-0}" = 1 ]; then
+    # A lean session is the monitor and nothing else. The window manager's own menu still reaches
+    # a terminal, the files and the monitor, so nothing is out of reach, only out of memory.
+    morrow-watch &
+else
+    tint2 &
+    pcmanfm --desktop &
+    # Started last, so that the monitor's first sample already includes the rest of the session;
+    # a reading that leaves out the programs it is measuring is a reading of a different machine.
+    morrow-watch &
+fi

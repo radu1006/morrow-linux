@@ -1,0 +1,11 @@
+/target
+/dist
+/out
+/iso/aports
+/iso/dist
+/iso/.cache
+Cargo.lock.orig
+*.apkovl.tar.gz
+*.iso
+*.log
+.DS_Store
